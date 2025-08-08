@@ -1,3 +1,4 @@
+import HeroCarousel from "@/components/Slider";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -6,5 +7,7 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  return <div className="text-red-500">Home Landing Page</div>;
+  return <>
+  <HeroCarousel></HeroCarousel>
+  </>;
 }

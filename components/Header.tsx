@@ -1,159 +1,143 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { ChevronDownIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { useState } from 'react';
+import { FaTools, FaIndustry, FaRobot, FaShieldAlt, FaMicrochip, FaHammer, FaFireExtinguisher } from 'react-icons/fa';
 
-const NAV_ITEMS = [
-  {
-    label: 'Product',
-    dropdown: [
-      { label: 'Analytics', href: '#' },
-      { label: 'Engagement', href: '#' },
-      { label: 'Security', href: '#' },
-    ],
-  },
-  { label: 'Features', href: '#' },
-  { label: 'Marketplace', href: '#' },
-  { label: 'Company', href: '#' },
+const categories = [
+  { name: 'Industrial Tools', icon: <FaTools /> },
+  { name: 'Fabrication', icon: <FaIndustry /> },
+  { name: 'Automation', icon: <FaRobot /> },
+  { name: 'Safety', icon: <FaShieldAlt /> },
+  { name: 'Electronics', icon: <FaMicrochip /> },
+  { name: 'Hardware', icon: <FaHammer /> },
+  { name: 'Welding', icon: <FaFireExtinguisher /> },
+  
 ];
 
 export default function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   return (
-    <header className="bg-white shadow">
-      <nav
-        className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
-        aria-label="Global"
-      >
+    <>
+    <header className="w-full bg-white relative z-50">
+      <div className="container mx-auto flex items-center justify-between px-4 py-3 lg:px-6">
         {/* Logo */}
-        <div className="flex lg:flex-1">
-          <Link href="/" className="-m-1.2 p-1.5" aria-label="Home">
-            <div className="flex items-center">
-            <span className="text-4xl font-[1000] text-blue-950">JK</span>
-            <span className="text-4xl font-[1000] text-sky-400 ml-1">SKY</span>
-          </div>
-          </Link>
-        </div>
+        <Link href="/" className="text-xl sm:text-2xl font-extrabold text-black tracking-tight">
+          <span className="text-sky-700">JKSKY</span> GROUP
+        </Link>
 
-        {/* Mobile menu button */}
-        <div className="flex lg:hidden">
-          <button
-            type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-            onClick={() => setMobileMenuOpen(true)}
-            aria-label="Open main menu"
-          >
-            <Bars3Icon className="h-6 w-6" aria-hidden="true" />
-          </button>
-        </div>
+        {/* Desktop Navigation */}
+        <nav className="hidden lg:flex space-x-8 xl:space-x-10 text-[15px] xl:text-[16px] font-medium text-black">
+          <Link className='hover:text-blue-700 transition-colors' href="/">Home</Link>
+          <Link className='hover:text-blue-700 transition-colors' href="#about">About</Link>
+          <Link className='hover:text-blue-700 transition-colors' href="#categories">Categories</Link>
+          <Link className='hover:text-blue-700 transition-colors' href="#products">Products</Link>
+          <Link className='hover:text-blue-700 transition-colors' href="#services">Services</Link>
+          <Link className='hover:text-blue-700 transition-colors' href="#contact">Contact</Link>
+        </nav>
 
-        {/* Desktop menu */}
-        <div className="hidden lg:flex lg:gap-x-12">
-          {NAV_ITEMS.map((item) =>
-            item.dropdown ? (
-              <div key={item.label} className="relative group">
-                <button
-                  className="flex items-center gap-x-1 text-base font-semibold text-gray-900"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                  type="button"
-                >
-                  {item.label}
-                  <ChevronDownIcon className="h-5 mt-1 w-5 font-[1000] text-gray-700 group-hover:text-gray-900" />
-                </button>
-                <div className="absolute left-0 mt-2 hidden w-56 rounded-md bg-white p-2 shadow-lg group-hover:block z-50">
-                  {item.dropdown.map((sub) => (
-                    <Link
-                      key={sub.label}
-                      href={sub.href}
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >
-                      {sub.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            ) : (
-              <Link
-                key={item.label}
-                href={item.href!}
-                className="text-base font-semibold text-gray-900"
-              >
-                {item.label}
-              </Link>
-            )
-          )}
-        </div>
+        {/* Desktop CTA Button */}
+        <Link
+          href="#quote"
+          className="hidden sm:block rounded-md bg-blue-700 px-3 py-2 lg:px-4 text-white text-sm font-medium hover:bg-black transition-colors"
+        >
+          Request Quote
+        </Link>
 
-        {/* Login (desktop) */}
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link href="#" className="text-sm font-semibold text-gray-900">
-            Log in <span aria-hidden="true">&rarr;</span>
-          </Link>
-        </div>
-      </nav>
+        {/* Mobile Menu Button */}
+        <button
+          onClick={toggleMobileMenu}
+          className="lg:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1"
+          aria-label="Toggle mobile menu"
+        >
+          <span className={`h-0.5 w-6 bg-black transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
+          <span className={`h-0.5 w-6 bg-black transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
+          <span className={`h-0.5 w-6 bg-black transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
+        </button>
+      </div>
 
       {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 z-50 bg-white p-6 overflow-y-auto">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="-m-1.2 p-1.2" aria-label="Home">
-            <div className="flex items-center">
-            <span className="text-4xl font-[1000] text-blue-950">JK</span>
-            <span className="text-4xl font-[1000] text-sky-400 ml-1">SKY</span>
-          </div>
-            </Link>
-            <button
-              type="button"
-              className="-m-2.5 rounded-md p-2.5 text-gray-1000 inline-flex items-center justify-center"
-              onClick={() => setMobileMenuOpen(false)}
-              aria-label="Close menu"
+      <div className={`lg:hidden absolute top-full left-0 w-full bg-white shadow-lg z-40 transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+        <nav className="bg-white border-t border-gray-100 px-4 py-4">
+          <div className="flex flex-col space-y-4">
+            <Link 
+              className='text-black hover:text-blue-700 transition-colors py-2 border-b border-gray-100' 
+              href="/"
+              onClick={() => setIsMobileMenuOpen(false)}
             >
-              <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-            </button>
-          </div>
-
-          <div className="mt-6 space-y-2">
-            {NAV_ITEMS.map((item) =>
-              item.dropdown ? (
-                <details key={item.label} className="group">
-                  <summary className="flex w-full items-center justify-between cursor-pointer text-base font-semibold text-gray-900 hover:bg-gray-50 p-2 rounded-md">
-                    {item.label}
-                  </summary>
-                  <div className="pl-4 space-y-2 mt-2">
-                    {item.dropdown.map((sub) => (
-                      <Link
-                        key={sub.label}
-                        href={sub.href}
-                        className="block text-sm text-gray-700 hover:bg-gray-50 p-2 rounded-md"
-                      >
-                        {sub.label}
-                      </Link>
-                    ))}
-                  </div>
-                </details>
-              ) : (
-                <Link
-                  key={item.label}
-                  href={item.href!}
-                  className="block text-base font-semibold text-gray-900 hover:bg-gray-50 p-2 rounded-md"
-                >
-                  {item.label}
-                </Link>
-              )
-            )}
+              Home
+            </Link>
+            <Link 
+              className='text-black hover:text-blue-700 transition-colors py-2 border-b border-gray-100' 
+              href="#about"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              About
+            </Link>
+            <Link 
+              className='text-black hover:text-blue-700 transition-colors py-2 border-b border-gray-100' 
+              href="#categories"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Categories
+            </Link>
+            <Link 
+              className='text-black hover:text-blue-700 transition-colors py-2 border-b border-gray-100' 
+              href="#products"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Products
+            </Link>
+            <Link 
+              className='text-black hover:text-blue-700 transition-colors py-2 border-b border-gray-100' 
+              href="#services"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Services
+            </Link>
+            <Link 
+              className='text-black hover:text-blue-700 transition-colors py-2 border-b border-gray-100' 
+              href="#contact"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Contact
+            </Link>
             <Link
-              href="#"
-              className="block text-base font-semibold text-gray-900 hover:bg-gray-50 p-2 rounded-md"
+              href="#quote"
+              className="mt-4 rounded-md bg-blue-700 px-4 py-3 text-white text-sm font-medium hover:bg-black transition-colors text-center"
+              onClick={() => setIsMobileMenuOpen(false)}
             >
-              Log in
+              Request Quote
             </Link>
           </div>
-        </div>
-      )}
+        </nav>
+        
+      </div>
     </header>
+    {/* Scrollable Categories Bar */}
+<div className="w-full bg-white mt-3 mb-5">
+  <div className="overflow-x-auto no-scrollbar">
+    <div className="flex justify-center sm:justify-start gap-5 sm:gap-10 px-4 py-3 w-max mx-auto">
+      {categories.map((item, idx) => (
+        <Link key={idx} href={`#`}>
+          <div className="flex-shrink-0 w-40 sm:w-40 bg-white p-2 sm:p-2 rounded-xl border-1 border-sky-700 shadow-lg  text-center cursor-pointer hover:bg-gray-100 transition">
+            <div className="mx-auto mb-2 sm:mb-3 h-10 w-10 sm:h-12 sm:w-12 rounded-full  bg-blue-100 flex items-center justify-center text-blue-700 text-lg sm:text-xl">
+              {item.icon}
+            </div>
+            <p className="text-xs sm:text-sm font-semibold text-gray-800">
+              {item.name}
+            </p>
+          </div>
+        </Link>
+      ))}
+    </div>
+  </div>
+</div>
+    </>
   );
 }
