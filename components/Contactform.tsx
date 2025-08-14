@@ -15,15 +15,15 @@ export default function ContactSection() {
 
         <form className="space-y-4">
           <div className="flex flex-col md:flex-row gap-4">
-            <input type="text" placeholder="Name" className="w-full border px-4 py-2 rounded-md" />
-            <input type="email" placeholder="Email" className="w-full border px-4 py-2 rounded-md" />
+            <input type="text" placeholder="Name" className="w-full border border-gray-500 px-4 py-2 rounded-[4px]" />
+            <input type="email" placeholder="Email" className="w-full border border-gray-500 px-4 py-2 rounded-[4px]" />
           </div>
-          <input type="text" placeholder="Subject" className="w-full border px-4 py-2 rounded-md" />
-          <textarea rows={5} placeholder="Message" className="w-full border px-4 py-2 rounded-md resize-none" />
+          <input type="text" placeholder="Subject" className="w-full border border-gray-500 px-4 py-2 rounded-[4px]" />
+          <textarea rows={5} placeholder="Message" className="w-full border border-gray-500 px-4 py-2 rounded-[4px] resize-none" />
 
           <button
             type="submit"
-            className="bg-[#1C2E56] text-white px-6 py-2 rounded-md hover:bg-[#162447] transition"
+            className="bg-[#1C2E56] text-white px-6 py-2 rounded-md hover:bg-black transition"
           >
             Send Message
           </button>

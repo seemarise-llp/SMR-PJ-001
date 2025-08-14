@@ -3,6 +3,7 @@ import HeroCarousel from "@/components/Slider";
 import CallToAction from "@/components/CalltoAction";import FeaturedProducts from "@/components/FeaturedProduct";
 import AboutSection from "@/components/About";
 import CoreServices from "@/components/Serviceslist";
+
 import type { Metadata } from "next";
 
 
@@ -56,11 +57,12 @@ export const products = [
   ];
 export default function Home() {
   return <>
-  <HeroCarousel></HeroCarousel>
-  <FeaturedProducts products={products}></FeaturedProducts>
-  <AboutSection></AboutSection>
-  <CoreServices></CoreServices>
-  <CallToAction></CallToAction>
-  <ContactSection></ContactSection>
+    {/* <JKSkyPreloader></JKSkyPreloader> */}
+    <HeroCarousel></HeroCarousel>
+    <FeaturedProducts products={products}></FeaturedProducts>
+    <AboutSection></AboutSection>
+    <CoreServices></CoreServices>
+    <CallToAction></CallToAction>
+    <ContactSection></ContactSection>
   </>;
 }

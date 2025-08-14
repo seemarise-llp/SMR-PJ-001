@@ -34,7 +34,7 @@ export default function Header() {
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex space-x-8 xl:space-x-10 text-[15px] xl:text-[16px] font-medium text-black">
           <Link className='hover:text-blue-700 transition-colors' href="/">Home</Link>
-          <Link className='hover:text-blue-700 transition-colors' href="#about">About</Link>
+          <Link className='hover:text-blue-700 transition-colors' href="/about">About</Link>
           <Link className='hover:text-blue-700 transition-colors' href="#categories">Categories</Link>
           <Link className='hover:text-blue-700 transition-colors' href="#products">Products</Link>
           <Link className='hover:text-blue-700 transition-colors' href="#services">Services</Link>
@@ -74,7 +74,7 @@ export default function Header() {
             </Link>
             <Link 
               className='text-black hover:text-blue-700 transition-colors py-2 border-b border-gray-100' 
-              href="#about"
+              href="/about"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               About

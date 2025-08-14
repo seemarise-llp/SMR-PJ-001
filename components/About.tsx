@@ -41,7 +41,7 @@ export default function AboutSection() {
   }, []);
 
   return (
-    <section className="bg-white py-12 lg:py-16 pt-0">
+    <section className="bg-white py-12 lg:py-16 pt-5 md:pt-0">
       <div className="container mx-auto flex flex-col lg:flex-row items-center gap-12 px-4 sm:px-6">
         
         {/* Text Content */}
